@@ -21,6 +21,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     ruby2.0-dev
 
 RUN update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.0 1
+RUN RUN ruby2.0 -S gem install psych --version 2.0.17
 
 RUN ruby2.0 -r yaml -r rubygems/safe_yaml -S gem
 
