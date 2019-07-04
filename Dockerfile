@@ -16,11 +16,15 @@ RUN apt-get install -y \
     python \
     mono-devel \
     aptitude \
-   
-RUN apt-get install -y \
     rake \
-    ruby-dev \
     rpm \
+
+
+RUN apt-add-repository ppa:brightbox/ruby-ng &&  apt-get update
+
+RUN  apt-get install ruby2.4
+
+RUN ruby -v
 
 RUN gem install fpm
 
