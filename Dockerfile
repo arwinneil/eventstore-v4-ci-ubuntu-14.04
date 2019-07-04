@@ -19,6 +19,8 @@ RUN apt-get install -y \
     rake \
     rpm
 
+RUN apt-get install software-properties-common python-software-properties
+
 RUN apt-add-repository ppa:brightbox/ruby-ng &&  apt-get update
 
 RUN  apt-get install ruby2.4
