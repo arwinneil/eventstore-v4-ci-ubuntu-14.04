@@ -23,7 +23,7 @@ RUN apt-get install -y software-properties-common python-software-properties
 
 RUN apt-add-repository ppa:brightbox/ruby-ng &&  apt-get update
 
-RUN  apt-get -y install ruby2.4
+RUN  apt-get -y install ruby2.4 ruby-dev
 
 RUN ruby -v
 
