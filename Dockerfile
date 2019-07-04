@@ -2,7 +2,10 @@ FROM ubuntu:14.04.3
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+RUN echo "deb http://download.mono-project.com/repo/debian wheezy/snapshots/4.6.2" main | tee /etc/apt/sources.list.d/mono-xamarin.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     autoconf \
     automake \
     build-essential \
@@ -20,13 +23,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     software-properties-common\
     python-software-properties
 
-RUN apt-add-repository ppa:brightbox/ruby-ng && apt-get update && apt-get -y install ruby2.2 ruby2.2-dev
+RUN apt-add-repository ppa:brightbox/ruby-ng && apt-get update && apt-get -y install --no-install-recommends ruby2.2 ruby2.2-dev && gem install fpm && rm -rf /var/lib/apt/lists/*
 
-RUN gem install fpm
-
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb http://download.mono-project.com/repo/debian wheezy/snapshots/4.6.2" main | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
-RUN apt-get update
 RUN aptitude install mono-complete -y
 
 #NodeJS v8.11.4 (LTS) EOL December 2019
