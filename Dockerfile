@@ -17,8 +17,7 @@ RUN apt-get install -y \
     mono-devel \
     aptitude \
     rake \
-    rpm \
-
+    rpm
 
 RUN apt-add-repository ppa:brightbox/ruby-ng &&  apt-get update
 
